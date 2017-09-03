@@ -12,11 +12,11 @@ const shelfTitle = {
 class BookList extends React.Component {
   booksByShelf() {
     const books = Object.values(this.props.books);
-    return ({
-      currentlyReading: books.filter(book => book.shelf === 'currentlyReading'),
-      wantToRead: books.filter(book => book.shelf === 'wantToRead'),
-      read: books.filter(book => book.shelf === 'read')
-    })
+    let booksByShelf = {};
+    Object.keys(shelfTitle).forEach(shelf =>
+      booksByShelf[shelf] = books.filter(book => book.shelf === shelf)
+    );
+    return booksByShelf;
   }
 
 

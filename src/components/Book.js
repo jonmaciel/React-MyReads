@@ -11,7 +11,10 @@ export default ({id, authors, title, imageLinks, shelf, onChangeShlef}) =>
       <SelectShelf bookId={id} onChangeShlef={onChangeShlef} selectedsShelf={shelf || ''} />
     </div>
     <div className="book-title">{title}</div>
-    {authors && authors.map(author => <div className="book-authors">{author}</div>)}
+    { Array.isArray(authors) ?
+        authors.map(author => <div className="book-authors">{author}</div>) :
+        <div className="book-authors">{authors}</div>
+    }
   </div>
 
 

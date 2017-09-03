@@ -12,7 +12,12 @@ class Search extends React.Component {
     const query = e.target.value
     if(!query.length > 1) return;
     BooksAPI.search(query, 10).then(books => {
-      this.setState({resultBooks: this.prepareBooks(books)})
+      let resultBooks = undefined;
+
+      if (books && !books.error) {
+        resultBooks = this.prepareBooks(books)
+      }
+      this.setState({resultBooks})
     })
   }
 
